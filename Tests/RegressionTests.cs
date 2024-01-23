@@ -67,9 +67,9 @@ namespace Tests
             logger.Info("Step 12: Getting tax value from checkout page");
             var tax = totalPricePage.TaxValue.Text;
             string taxValueString = Regex.Match(tax, @"\d+\.\d+").Value;
-            double taxValueValue = Convert.ToDouble(taxValueString);
+            double taxValue = Convert.ToDouble(taxValueString);
 
-            double originalItemPrice = itemsTotalPriceValue - taxValueValue;
+            double originalItemPrice = itemsTotalPriceValue - taxValue;
             //Round to needed double format (e.g., 9.99)
             double roundedOriginalItemPrice = Math.Round(originalItemPrice, 2);
             //Convert to string to compare the value with original price
