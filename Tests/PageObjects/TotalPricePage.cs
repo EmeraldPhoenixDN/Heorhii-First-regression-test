@@ -12,10 +12,6 @@ namespace Tests.PageObjects
         public IWebElement TotalPrice => _driver.FindElement(By.XPath("//div[@class='summary_info_label summary_total_label']"));
         public IWebElement TaxValue => _driver.FindElement(By.XPath("//div[@class='summary_tax_label'and text()='0.80']"));
 
-
-
-
-
         public TotalPricePage(IWebDriver driver)
         {
             _driver = driver;

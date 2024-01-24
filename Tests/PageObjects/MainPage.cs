@@ -9,16 +9,9 @@ namespace Tests.PageObjects
 
         public IWebElement AddToCart_Btn => _driver.FindElement(By.XPath("(//div[@class='inventory_item_description']/div[@class='pricebar']/button)[2]"));
         public IWebElement ItemPrice => _driver.FindElement(By.XPath("//div[@class='inventory_item_price'and text()='9.99']"));
+        public IWebElement ItemName => _driver.FindElement(By.XPath("//div[@class='inventory_item_name ' and text()='Sauce Labs Bike Light']"));
         public IWebElement Checkout_Btn => _driver.FindElement(By.Id("shopping_cart_container"));
         public IWebElement ShoppingCart_Bdg => _driver.FindElement(By.ClassName("shopping_cart_badge"));
-        public IWebElement FooterText => _driver.FindElement(By.ClassName("footer_copy"));
-        public IWebElement DropDownFilter => _driver.FindElement(By.ClassName("product_sort_container"));
-        public IWebElement MurgerMenu => _driver.FindElement(By.Id("react-burger-menu-btn"));
-        public IWebElement About_Lnk => _driver.FindElement(By.Id("about_sidebar_link"));
-        public IWebElement Developers => _driver.FindElement(By.XPath("//span[text()='Developers']"));
-        public IWebElement Documentation => _driver.FindElement(By.XPath("//span[text()='Documentation']"));
-
-
 
         public MainPage(IWebDriver driver)
         {
@@ -36,6 +29,5 @@ namespace Tests.PageObjects
             wait.FluentWait(_driver, () => Checkout_Btn, 10);
             Checkout_Btn.Click();
         }
-
     }
 }

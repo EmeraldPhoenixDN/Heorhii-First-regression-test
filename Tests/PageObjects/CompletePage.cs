@@ -7,7 +7,6 @@ namespace Tests.PageObjects
     {
         private IWebDriver _driver;
 
-  
         public IWebElement BackHome_Btn => _driver.FindElement(By.XPath("//div[@class='checkout_complete_container']/button"));
         public CompletePage(IWebDriver driver)
         {

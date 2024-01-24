@@ -22,7 +22,6 @@ namespace Tests.PageObjects
             LastName_Field.SendKeys(lastName);
             Zip_Field.SendKeys(zip);
             Continue_Btn.Click();
-
             return new CheckoutPage(_driver);
         }
     }

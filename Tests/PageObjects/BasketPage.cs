@@ -8,10 +8,9 @@ namespace Tests.PageObjects
         private IWebDriver _driver;
 
         public IWebElement Checkout_Btn => _driver.FindElement(By.Id("checkout"));
-        public IWebElement ItemPrice => _driver.FindElement(By.XPath("//div[@class='inventory_item_price'and text()='9.99']"));
-
-
-
+        public IWebElement BasketItemPrice => _driver.FindElement(By.XPath("//div[@class='inventory_item_price'and text()='9.99']"));
+        public IWebElement BasketItemName => _driver.FindElement(By.XPath("//div[@class='inventory_item_name'and text()='Sauce Labs Bike Light']"));
+        public IWebElement BasketItemQuantity => _driver.FindElement(By.XPath("//div[@class='cart_quantity']"));
 
         public BasketPage(IWebDriver driver)
         {
