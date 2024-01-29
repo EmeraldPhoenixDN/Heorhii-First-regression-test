@@ -11,11 +11,11 @@ namespace Tests
     [Parallelizable(ParallelScope.Fixtures)]
     public class RegressionTests : TestBase
     {
-        const string _userName = "standard_user";
-        const string _password = "secret_sauce";
-        const string _firstName = "Heorhii";
-        const string _lastName = "Sashniev";
-        const string _zip = "051997";
+        const string UserName = "standard_user";
+        const string Password = "secret_sauce";
+        const string FirstName = "Heorhii";
+        const string LastName = "Sashniev";
+        const string Zip = "051997";
 
         [Test]
         public void ItemPurchase()
@@ -23,7 +23,7 @@ namespace Tests
             var loginPage = new LoginPage(driverManager.ChromeDriver);
 
             logger.Info("Step 1: Login to main page");
-            var mainPage = loginPage.Login(_userName, _password);
+            var mainPage = loginPage.Login(UserName, Password);
 
             logger.Info("Step 2: Going to add a bag to the cart");
             mainPage.AddToCart_Btn.Click();
@@ -63,7 +63,7 @@ namespace Tests
 
             var checkoutPage = new CheckoutPage(driverManager.ChromeDriver);
             logger.Info("Step 13: Going to final conclusion");
-            checkoutPage.CheckoutForm(_firstName, _lastName, _zip);
+            checkoutPage.CheckoutForm(FirstName, LastName, Zip);
 
             var totalPricePage = new TotalPricePage(driverManager.ChromeDriver);
             logger.Info("Step 14: Getting item price from checkout page");
