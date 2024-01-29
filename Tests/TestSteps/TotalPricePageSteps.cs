@@ -1,4 +1,4 @@
-﻿using NUnit.Framework.Legacy;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
@@ -6,15 +6,12 @@ using Tests.PageObjects;
 
 namespace Tests.TestSteps
 {
-    internal class TotalPricePageSteps
+    [Binding]
+    internal class TotalPricePageSteps 
     {
         ScenarioContext _scenarioContext;
-        RegressionTests _regressionTests;
-        MainPage _mainPage;
+        RegressionTests _regressionTests = new RegressionTests();
         TotalPricePage _totalPricePage;
-
-
-
 
         public TotalPricePageSteps(ScenarioContext context)
         {
@@ -22,14 +19,14 @@ namespace Tests.TestSteps
             _totalPricePage = new TotalPricePage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
 
-        [Then(@"the total cost should be correct")]
-        public void ThenTheTotalCostShouldBeCorrect()
+        [When(@"the total cost should be correct")]
+        public void WhenTheTotalCostShouldBeCorrect()
         {
-            var itemsfinalPrice = _totalPricePage.ItemPrice.Text;
-
-            var itemsTotalPrice = _regressionTests.NumberSeachInText(_totalPricePage.TotalPrice.Text);
+            var origialItemPrice = _scenarioContext.Get<string>("itemsPriceOriginal");
+            var itemsTotalPrice = _totalPricePage.TotalPrice.Text;
+            var roundedItemsTotalPrice = _regressionTests.NumberSeachInText(itemsTotalPrice);
             //Convert to Double
-            double itemsTotalPriceValue = Convert.ToDouble(itemsTotalPrice);
+            double itemsTotalPriceValue = Convert.ToDouble(roundedItemsTotalPrice);
 
             var tax = _regressionTests.NumberSeachInText(_totalPricePage.TaxValue.Text);
             double taxValue = Convert.ToDouble(tax);
@@ -39,11 +36,12 @@ namespace Tests.TestSteps
             double roundedOriginalItemPrice = Math.Round(originalItemPrice, 2);
             //Convert to string to compare the value with original price
             string stringRoundedOriginalItemPrice = Convert.ToString(roundedOriginalItemPrice);
-            ClassicAssert.AreEqual(_mainPage.ItemPrice, stringRoundedOriginalItemPrice);
+
+            Assert.AreEqual(origialItemPrice, stringRoundedOriginalItemPrice);
         }
 
-        [Then(@"the purchase should be successful")]
-        public void ThenThePurchaseShouldBeSuccessful()
+        [When(@"the purchase should be successful")]
+        public void WhenThePurchaseShouldBeSuccessful()
         {
             _totalPricePage.Finish_Btn.Click();
         }

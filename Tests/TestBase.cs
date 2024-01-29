@@ -1,6 +1,10 @@
-﻿using Core;
+﻿using BoDi;
+using Core;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using TechTalk.SpecFlow;
 using WebDrv;
 
 namespace Tests
@@ -12,15 +16,21 @@ namespace Tests
         protected WebDriverManager driverManager = new WebDriverManager();
         protected BaseLogger logger = new BaseLogger();
         protected WebDriverWaits waits;
-        
+
+
+     
+
         [SetUp]
         public void SetUp()
         {
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("--headless"); // This line enables headless mode
             logger.Info($"---- Beginning of the {TestExecutionContext.CurrentContext.CurrentTest.Name} test ----");
-
             driverManager.ChromeDriver.Navigate().GoToUrl("https://www.saucedemo.com/");
+
         }
 
+     
         [TearDown]
         public void TearDown()
         {

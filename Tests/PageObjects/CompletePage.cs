@@ -12,10 +12,11 @@ namespace Tests.PageObjects
         {
             _driver = driver;
         }
-        public void BackHomeBtn(WebDriverWaits wait)
+        public MainPage BackHomeBtn(WebDriverWaits wait)
         {
             wait.FluentWait(_driver, () => BackHome_Btn, 10);
             BackHome_Btn.Click();
+            return new MainPage(_driver);
         }
     }
 }

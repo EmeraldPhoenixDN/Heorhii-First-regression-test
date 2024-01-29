@@ -24,10 +24,11 @@ namespace Tests.PageObjects
             AddToCart_Btn.Click();
         }
 
-        public void ClickCheckoutBtn(WebDriverWaits wait)
+        public CheckoutPage ClickCheckoutBtn(WebDriverWaits wait)
         {
             wait.FluentWait(_driver, () => Checkout_Btn, 10);
             Checkout_Btn.Click();
+            return new CheckoutPage(_driver);
         }
     }
 }

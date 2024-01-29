@@ -16,13 +16,13 @@ namespace Tests.PageObjects
             _driver = driver;
         }
 
-        public CheckoutPage CheckoutForm(string firstName, string lastName, string zip)
+        public TotalPricePage CheckoutForm(string firstName, string lastName, string zip)
         {
             FirstName_Field.SendKeys(firstName);
             LastName_Field.SendKeys(lastName);
             Zip_Field.SendKeys(zip);
             Continue_Btn.Click();
-            return new CheckoutPage(_driver);
+            return new TotalPricePage(_driver);
         }
     }
 }

@@ -17,10 +17,11 @@ namespace Tests.PageObjects
             _driver = driver;
         }
 
-        public void CheckoutBtn(WebDriverWaits wait)
+        public CheckoutPage CheckoutBtn(WebDriverWaits wait)
         {
             wait.FluentWait(_driver, () => Checkout_Btn, 10);
             Checkout_Btn.Click();
+            return new CheckoutPage(_driver);
         }
     }
 }

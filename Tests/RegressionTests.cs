@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.Legacy;
 using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 using Tests.PageObjects;
 
@@ -32,7 +30,7 @@ namespace Tests
             var itemsCount = mainPage.ShoppingCart_Bdg.Text;
 
             logger.Info("Step 4: Verifying that bag was added to the cart");
-            ClassicAssert.AreEqual("1", itemsCount);
+            Assert.AreEqual("1", itemsCount);
 
             logger.Info("Step 5: Getting item price from main page");
             var itemsPriceOriginal = NumberSeachInText(mainPage.ItemPrice.Text);
@@ -46,17 +44,17 @@ namespace Tests
             var basketPage = new BasketPage(driverManager.ChromeDriver);
             logger.Info("Step 8: Verifying that item price is correct");
             var basketItemPrice = NumberSeachInText(basketPage.BasketItemPrice.Text);
-            ClassicAssert.AreEqual(itemsPriceOriginal, basketItemPrice);
+            Assert.AreEqual(itemsPriceOriginal, basketItemPrice);
 
             logger.Info("Step 9: Verifying that item name is correct");
             var basketItemName = basketPage.BasketItemName.Text;
-            ClassicAssert.AreEqual(itemsName, basketItemName);
+            Assert.AreEqual(itemsName, basketItemName);
 
             logger.Info("Step 10: Getting item quantity from basket page");
             var itemsQuantity = basketPage.BasketItemQuantity.Text;
 
             logger.Info("Step 11: Verifying that there is only 1 added item");
-            ClassicAssert.AreEqual("1", itemsQuantity);
+            Assert.AreEqual("1", itemsQuantity);
 
             logger.Info("Step 12: Going to checkout");
             basketPage.Checkout_Btn.Click();
@@ -85,7 +83,7 @@ namespace Tests
             string stringRoundedOriginalItemPrice = Convert.ToString(roundedOriginalItemPrice);
 
             logger.Info("Step 17: Verifying that total cost is correct");
-            ClassicAssert.AreEqual(itemsPriceOriginal, stringRoundedOriginalItemPrice);
+            Assert.AreEqual(itemsPriceOriginal, stringRoundedOriginalItemPrice);
 
             logger.Info("Step 18: Going to successful purchase page");
             totalPricePage.Finish_Btn.Click();

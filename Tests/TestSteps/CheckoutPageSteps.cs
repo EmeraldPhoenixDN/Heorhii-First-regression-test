@@ -1,16 +1,10 @@
-﻿using ICSharpCode.SharpZipLib.GZip;
-using NUnit.Framework.Legacy;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using Tests.PageObjects;
 
 namespace Tests.TestSteps
 {
+    [Binding]
     internal class CheckoutPageSteps
     {
         ScenarioContext _scenarioContext;

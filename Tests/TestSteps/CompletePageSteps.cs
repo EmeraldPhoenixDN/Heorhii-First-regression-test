@@ -14,6 +14,7 @@ namespace Tests.TestSteps
         {
             _scenarioContext = context;
             _completePage = new CompletePage(_scenarioContext.Get<IWebDriver>("WebDriver"));
+
         }
 
         [Then(@"main page is opened")]

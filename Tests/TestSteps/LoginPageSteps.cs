@@ -10,8 +10,7 @@ namespace Tests.TestSteps
         ScenarioContext _scenarioContext;
         WebDriverManager _driverManager = new WebDriverManager();
 
-        public LoginPageSteps(ScenarioContext context)
-        {
+        public  LoginPageSteps(ScenarioContext context) {
             _scenarioContext = context;
 
         }
@@ -25,11 +24,6 @@ namespace Tests.TestSteps
 
             _scenarioContext.Add("WebDriver", _driverManager.ChromeDriver);
         }
-
-        [When(@"the user logs in with valid credentials")]
-        public void WhenTheUserLogsInWithValidCredentials()
-        {
-
-        }
-    }
 }
+}
+

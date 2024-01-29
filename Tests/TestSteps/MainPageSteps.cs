@@ -1,4 +1,4 @@
-﻿using NUnit.Framework.Legacy;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using Tests.PageObjects;
@@ -6,11 +6,16 @@ using Tests.PageObjects;
 namespace Tests.TestSteps
 {
     [Binding]
-    internal class MainPageSteps
+    internal class MainPageSteps 
     {
        ScenarioContext _scenarioContext;
         MainPage _mainPage;
         RegressionTests regressionTests = new RegressionTests();
+
+       public string itemsCount;
+       public string itemsPriceOriginal;
+       public string itemsName;
+
 
 
         public MainPageSteps(ScenarioContext context)
@@ -18,6 +23,7 @@ namespace Tests.TestSteps
             _scenarioContext = context;
             _mainPage = new MainPage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
+
 
         [When(@"the user adds a bag to the cart")]
         public void WhenTheUserAddsABagToTheCart()
@@ -29,11 +35,15 @@ namespace Tests.TestSteps
         public void ThenTheItemShouldBeAddedToTheCart()
         {
 
-            var itemsCount = _mainPage.ShoppingCart_Bdg.Text;
-            var itemsPriceOriginal = regressionTests.NumberSeachInText(_mainPage.ItemPrice.Text);
-            var itemsName = _mainPage.ItemName.Text;
+            itemsCount = _mainPage.ShoppingCart_Bdg.Text;
+            itemsPriceOriginal = regressionTests.NumberSeachInText(_mainPage.ItemPrice.Text);
+            itemsName = _mainPage.ItemName.Text;
 
-            ClassicAssert.AreEqual("1", itemsCount);
+            _scenarioContext.Add("itemsCount", itemsCount);
+            _scenarioContext.Add("itemsPriceOriginal", itemsPriceOriginal);
+            _scenarioContext.Add("itemsName", itemsName);
+
+            Assert.AreEqual("1", itemsCount);
 
             _mainPage.Checkout_Btn.Click();
         }
