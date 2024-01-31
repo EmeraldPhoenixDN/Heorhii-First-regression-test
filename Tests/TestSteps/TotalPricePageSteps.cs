@@ -3,18 +3,33 @@ using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 using Tests.PageObjects;
+using WebDrv;
 
 namespace Tests.TestSteps
 {
     [Binding]
     internal class TotalPricePageSteps : BasePage
     {
-        ScenarioContext _scenarioContext;
-        TotalPricePage _totalPricePage;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverManager _driverManager;
+        private readonly TotalPricePage _totalPricePage;
 
-        public TotalPricePageSteps(ScenarioContext context)
+        public string itemsCount;
+        public string itemsPriceOriginal;
+        public string itemsName;
+
+        public TotalPricePageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
             _scenarioContext = context;
+            _driverManager = driverManager;
+
+            // Ensure the WebDriver is initialized only once per scenario
+            if (!_scenarioContext.ContainsKey("WebDriver"))
+            {
+                var chromeDriver = _driverManager.ChromeDriver;
+                _scenarioContext.Add("WebDriver", chromeDriver);
+            }
+
             _totalPricePage = new TotalPricePage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
 

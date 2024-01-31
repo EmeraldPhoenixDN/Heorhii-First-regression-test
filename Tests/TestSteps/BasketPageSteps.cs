@@ -2,20 +2,31 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using Tests.PageObjects;
+using WebDrv;
 
 namespace Tests.TestSteps
 {
     [Binding]
     internal class BasketPageSteps : BasePage
     {
-        ScenarioContext _scenarioContext;
-        BasketPage _basketPage;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverManager _driverManager;
+        private readonly BasketPage _basketPage;
 
-        public BasketPageSteps(ScenarioContext context)
+
+
+        public BasketPageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
             _scenarioContext = context;
-            _basketPage = new BasketPage(_scenarioContext.Get<IWebDriver>("WebDriver"));
+            _driverManager = driverManager;
 
+            // Ensure the WebDriver is initialized only once per scenario
+            if (!_scenarioContext.ContainsKey("WebDriver"))
+            {
+                var chromeDriver = _driverManager.ChromeDriver;
+                _scenarioContext.Add("WebDriver", chromeDriver);
+            }
+            _basketPage = new BasketPage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
 
         [Then(@"the item details should be correct in the cart")]

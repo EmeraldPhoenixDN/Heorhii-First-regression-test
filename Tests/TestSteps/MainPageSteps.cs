@@ -2,24 +2,33 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using Tests.PageObjects;
+using WebDrv;
 
 namespace Tests.TestSteps
 {
     [Binding]
     internal class MainPageSteps : BasePage
     {
-       ScenarioContext _scenarioContext;
-        MainPage _mainPage;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverManager _driverManager;
+        private readonly MainPage _mainPage;
 
-       public string itemsCount;
+        public string itemsCount;
        public string itemsPriceOriginal;
        public string itemsName;
 
-
-
-        public MainPageSteps(ScenarioContext context)
+        public MainPageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
             _scenarioContext = context;
+            _driverManager = driverManager;
+
+            // Ensure the WebDriver is initialized only once per scenario
+            if (!_scenarioContext.ContainsKey("WebDriver"))
+            {
+                var chromeDriver = _driverManager.ChromeDriver;
+                _scenarioContext.Add("WebDriver", chromeDriver);
+            }
+
             _mainPage = new MainPage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
 

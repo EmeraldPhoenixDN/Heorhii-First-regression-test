@@ -7,22 +7,26 @@ namespace Tests.TestSteps
     [Binding]
     internal class LoginPageSteps
     {
-        ScenarioContext _scenarioContext;
-        WebDriverManager _driverManager = new WebDriverManager();
 
-        public  LoginPageSteps(ScenarioContext context) {
+        ScenarioContext _scenarioContext;
+        private readonly WebDriverManager _driverManager;
+
+        public LoginPageSteps(ScenarioContext context, WebDriverManager driverManager) {
             _scenarioContext = context;
+            _driverManager = driverManager;
 
         }
 
         [Given(@"login to the site with username '([^']*)' and password '([^']*)'")]
         public void GivenLoginToTheSiteWithUsernameAndPassword(string userName, string password)
         {
-            _driverManager.ChromeDriver.Navigate().GoToUrl("https://www.saucedemo.com/");
-            LoginPage _loginPage = new LoginPage(_driverManager.ChromeDriver);
-            _loginPage.Login(userName, password);
+            var chromeDriver = _driverManager.ChromeDriver;
+            chromeDriver.Navigate().GoToUrl("https://www.saucedemo.com/");
 
-            _scenarioContext.Add("WebDriver", _driverManager.ChromeDriver);
+            var loginPage = new LoginPage(chromeDriver);
+            loginPage.Login(userName, password);
+
+            _scenarioContext.Add("WebDriver", chromeDriver);
         }
 }
 }

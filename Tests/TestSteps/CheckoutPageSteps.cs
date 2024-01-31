@@ -1,15 +1,17 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using Tests.PageObjects;
+using WebDrv;
 
 namespace Tests.TestSteps
 {
     [Binding]
     internal class CheckoutPageSteps
     {
-        ScenarioContext _scenarioContext;
-        CheckoutPage _checkoutPage;
-        
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverManager _driverManager;
+        private readonly CheckoutPage _checkoutPage;
+
 
         const string FirstName = "Heorhii";
         const string LastName = "Sashniev";
@@ -17,9 +19,17 @@ namespace Tests.TestSteps
 
 
 
-        public CheckoutPageSteps(ScenarioContext context)
+        public CheckoutPageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
             _scenarioContext = context;
+            _driverManager = driverManager;
+
+            // Ensure the WebDriver is initialized only once per scenario
+            if (!_scenarioContext.ContainsKey("WebDriver"))
+            {
+                var chromeDriver = _driverManager.ChromeDriver;
+                _scenarioContext.Add("WebDriver", chromeDriver);
+            }
             _checkoutPage = new CheckoutPage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
 
