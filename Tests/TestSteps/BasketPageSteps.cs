@@ -6,13 +6,10 @@ using Tests.PageObjects;
 namespace Tests.TestSteps
 {
     [Binding]
-    internal class BasketPageSteps
+    internal class BasketPageSteps : BasePage
     {
         ScenarioContext _scenarioContext;
         BasketPage _basketPage;
-        private readonly IWebDriver _driver;
-
-        RegressionTests regressionTests = new RegressionTests();
 
         public BasketPageSteps(ScenarioContext context)
         {
@@ -24,7 +21,7 @@ namespace Tests.TestSteps
         [Then(@"the item details should be correct in the cart")]
         public void ThenTheItemDetailsShouldBeCorrectInTheCart()
         {
-            var basketItemPrice = regressionTests.NumberSeachInText(_basketPage.BasketItemPrice.Text);
+            var basketItemPrice = NumberSeachInText(_basketPage.BasketItemPrice.Text);
             var basketItemName = _basketPage.BasketItemName.Text;
             var itemsQuantity = _basketPage.BasketItemQuantity.Text;
             var originalItemPrice = _scenarioContext.Get<string>("itemsPriceOriginal");

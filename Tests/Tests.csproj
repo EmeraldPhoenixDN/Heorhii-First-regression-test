@@ -125,7 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemPurchaseStepDefinitions.cs" />
+    <Compile Include="ItemPurchaseStepDefinitionsTestBase.cs" />
     <Compile Include="PageObjects\BasePage.cs" />
     <Compile Include="PageObjects\CompletePage.cs" />
     <Compile Include="PageObjects\TotalPricePage.cs" />

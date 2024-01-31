@@ -6,11 +6,10 @@ using Tests.PageObjects;
 namespace Tests.TestSteps
 {
     [Binding]
-    internal class MainPageSteps 
+    internal class MainPageSteps : BasePage
     {
        ScenarioContext _scenarioContext;
         MainPage _mainPage;
-        RegressionTests regressionTests = new RegressionTests();
 
        public string itemsCount;
        public string itemsPriceOriginal;
@@ -36,7 +35,7 @@ namespace Tests.TestSteps
         {
 
             itemsCount = _mainPage.ShoppingCart_Bdg.Text;
-            itemsPriceOriginal = regressionTests.NumberSeachInText(_mainPage.ItemPrice.Text);
+            itemsPriceOriginal = NumberSeachInText(_mainPage.ItemPrice.Text);
             itemsName = _mainPage.ItemName.Text;
 
             _scenarioContext.Add("itemsCount", itemsCount);

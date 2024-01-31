@@ -1,7 +1,7 @@
-﻿using Core;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
 
 namespace Tests.TestSteps
 {
@@ -17,6 +17,12 @@ namespace Tests.TestSteps
         {
             SelectElement select = new SelectElement(element);
             select.SelectByText(text);
+        }
+
+        public string NumberSeachInText(string RecivedString)
+        {
+            string SentString = Regex.Match(RecivedString, @"\d+\.\d+").Value;
+            return SentString;
         }
     }
 }

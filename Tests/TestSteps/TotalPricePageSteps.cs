@@ -7,10 +7,9 @@ using Tests.PageObjects;
 namespace Tests.TestSteps
 {
     [Binding]
-    internal class TotalPricePageSteps 
+    internal class TotalPricePageSteps : BasePage
     {
         ScenarioContext _scenarioContext;
-        RegressionTests _regressionTests = new RegressionTests();
         TotalPricePage _totalPricePage;
 
         public TotalPricePageSteps(ScenarioContext context)
@@ -24,11 +23,11 @@ namespace Tests.TestSteps
         {
             var origialItemPrice = _scenarioContext.Get<string>("itemsPriceOriginal");
             var itemsTotalPrice = _totalPricePage.TotalPrice.Text;
-            var roundedItemsTotalPrice = _regressionTests.NumberSeachInText(itemsTotalPrice);
+            var roundedItemsTotalPrice = NumberSeachInText(itemsTotalPrice);
             //Convert to Double
             double itemsTotalPriceValue = Convert.ToDouble(roundedItemsTotalPrice);
 
-            var tax = _regressionTests.NumberSeachInText(_totalPricePage.TaxValue.Text);
+            var tax = NumberSeachInText(_totalPricePage.TaxValue.Text);
             double taxValue = Convert.ToDouble(tax);
 
             double originalItemPrice = itemsTotalPriceValue - taxValue;
