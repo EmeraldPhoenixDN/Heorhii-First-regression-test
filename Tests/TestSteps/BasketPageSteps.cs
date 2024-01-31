@@ -13,8 +13,6 @@ namespace Tests.TestSteps
         private readonly WebDriverManager _driverManager;
         private readonly BasketPage _basketPage;
 
-
-
         public BasketPageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
             _scenarioContext = context;

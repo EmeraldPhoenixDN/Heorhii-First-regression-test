@@ -12,12 +12,9 @@ namespace Tests.TestSteps
         private readonly WebDriverManager _driverManager;
         private readonly CheckoutPage _checkoutPage;
 
-
         const string FirstName = "Heorhii";
         const string LastName = "Sashniev";
         const string Zip = "051997";
-
-
 
         public CheckoutPageSteps(ScenarioContext context, WebDriverManager driverManager)
         {

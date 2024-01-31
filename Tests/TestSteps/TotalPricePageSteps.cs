@@ -14,10 +14,6 @@ namespace Tests.TestSteps
         private readonly WebDriverManager _driverManager;
         private readonly TotalPricePage _totalPricePage;
 
-        public string itemsCount;
-        public string itemsPriceOriginal;
-        public string itemsName;
-
         public TotalPricePageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
             _scenarioContext = context;
@@ -59,8 +55,6 @@ namespace Tests.TestSteps
         {
             _totalPricePage.Finish_Btn.Click();
         }
-
-
     }
 }
 

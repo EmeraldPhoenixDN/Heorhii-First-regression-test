@@ -14,7 +14,6 @@ namespace Tests.TestSteps
         public LoginPageSteps(ScenarioContext context, WebDriverManager driverManager) {
             _scenarioContext = context;
             _driverManager = driverManager;
-
         }
 
         [Given(@"login to the site with username '([^']*)' and password '([^']*)'")]

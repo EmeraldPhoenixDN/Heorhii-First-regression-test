@@ -14,8 +14,8 @@ namespace Tests.TestSteps
         private readonly MainPage _mainPage;
 
         public string itemsCount;
-       public string itemsPriceOriginal;
-       public string itemsName;
+        public string itemsPriceOriginal;
+        public string itemsName;
 
         public MainPageSteps(ScenarioContext context, WebDriverManager driverManager)
         {
@@ -28,10 +28,8 @@ namespace Tests.TestSteps
                 var chromeDriver = _driverManager.ChromeDriver;
                 _scenarioContext.Add("WebDriver", chromeDriver);
             }
-
             _mainPage = new MainPage(_scenarioContext.Get<IWebDriver>("WebDriver"));
         }
-
 
         [When(@"the user adds a bag to the cart")]
         public void WhenTheUserAddsABagToTheCart()
@@ -52,7 +50,6 @@ namespace Tests.TestSteps
             _scenarioContext.Add("itemsName", itemsName);
 
             Assert.AreEqual("1", itemsCount);
-
             _mainPage.Checkout_Btn.Click();
         }
     }
